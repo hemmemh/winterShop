@@ -1,0 +1,68 @@
+@use "sass:math";
+@import "./null.scss";
+@import "./fonts";
+@import "./icons.scss";
+@import "./mixins.scss";
+
+@import url(https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+
+$minWidth: 320;
+$maxWidth: 1680;
+$maxWidthContainer: 1390;
+$containerPadding: 30;
+$containerWidth: $maxWidthContainer + $containerPadding;
+
+$pc: $containerWidth; // ПК, ноутбуки, некоторые планшеты в горизонтальном положении
+$tablet: 991.98px; // Планшеты, некоторые телефоны в горизонтальном положении
+$mobile: 767.98px; // Телефоны L
+$mobileSmall: 479.98px; // Телефоны S
+
+
+$mainColor: #000;
+$hoverColor: #EB5757;
+
+$fontMain:'Montserrat';
+
+[class*="__container"] {
+ 
+        max-width: rem($maxWidthContainer);
+        box-sizing: content-box;
+        margin: 0 auto;
+        padding: 0 rem(math.div($containerPadding, 2));
+    
+}
+
+
+
+
+
+#app{
+    min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+    max-width: 1680px;
+    margin: 0 auto;
+    position: relative;
+    
+}
+._app{
+    min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+
+    position: relative;
+}
+
+*{
+    font-family: $fontMain;
+    box-sizing: border-box;
+}
+
+body.hidden{
+    overflow: hidden;
+    touch-action: none;
+}
+
+
+
+

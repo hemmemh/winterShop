@@ -1,0 +1,22 @@
+services:
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+
+  back:
+    build: winterShopServer/.
+    ports:
+      - "5300:5300"
+    depends_on:
+      - mongo    
+
+  front:
+    build: 
+      context: winterShopClient/.
+    labels:
+      SERVICE_CHECK_INTERVAL: 10s
+    ports:
+      - "8080:80"
+    depends_on:
+      - back

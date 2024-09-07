@@ -1,0 +1,33 @@
+[class^="_icon-"], [class*=" _icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icons' !important;
+   
+    
+  
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  ._icon-search-winter:before {
+    content: "\e900";
+  }
+  ._icon-cart-winter:before {
+    content: "\e901";
+  }
+  ._icon-star-winter:before {
+    content: "\e902";
+  }
+  ._icon-user-winter:before {
+    content: "\e903";
+  }
+  ._icon-mail-winter:before {
+    content: "\e904";
+  }
+  ._icon-phone-winter:before {
+    content: "\e905";
+  }
+  ._icon-arrow-winter:before {
+    content: "\e906";
+  }
+  
