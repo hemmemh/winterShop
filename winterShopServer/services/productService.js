@@ -5,6 +5,12 @@ const path = require('path')
 const fs = require('fs')
 const Brand = require("../models/Brand")
 const Type = require("../models/Type")
+const { productsData, ratingData } = require("../data/exapleData")
+const brandService = require("./brandService")
+const { getRandomElement } = require("../helpers/helpers")
+const typeService = require("./typeService")
+const ratingService = require("./ratingService")
+const userService = require("./userService")
 class productServices{
 
 
@@ -62,7 +68,7 @@ class productServices{
             let {page,limit,typeId,brandId,search,minPrice,maxPrice,sort,sortNumber,checkedBrands,sizes,colors} = query
          
             page = page || 1
-            limit = limit || 2
+            limit = limit || 6
             search = search || ''
             checkedBrands = checkedBrands || 'false'
             const searchReg = new RegExp('.*' +search+ '.*')
@@ -145,6 +151,36 @@ class productServices{
             console.log(error);
         }
         
+    }
+
+    async createMany(){
+        try {
+            const products = productsData
+            const brands = await brandService.getAllWithoutType()
+            const users = await userService.getAll()
+            const rates = ratingData
+            for (const product of products){
+                const {colors, description,images,name,price,sizes,type} = product
+                const date = Date.now()
+                const brand = getRandomElement(brands)
+                const typeCreate = await typeService.getOneByName(type)
+                const response = new Product({name,description,price,type:typeCreate.id,brand:brand.id,images:JSON.stringify(images),date,sizes:JSON.stringify(sizes),colors:JSON.stringify(colors)})
+                await response.save()
+                brand.products.push(response._id)
+                await brand.save()
+                typeCreate.products.push(response._id)
+                await typeCreate.save()
+
+                for (const user of users){
+                    const rateData = getRandomElement(rates)
+                     await ratingService.createRating(user.id,rateData.rate,response.id,user.name,user.sername,rateData.text)
+    
+                }
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
     }
 
 }

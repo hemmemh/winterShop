@@ -16,5 +16,10 @@ async getOne(req,res){
     const response =await typeServices.getOne(id)
     return res.json(response)
 }
+
+async createMany(req,res){
+    const response =await typeServices.createMany()
+    return res.json(response)
+}
 }
 module.exports = new typeControllers()

@@ -99,5 +99,17 @@ async change(req,res){
     const response =await userServices.change(id,name,serName,birthDate,tell)
     return res.json(response)
 }
+
+async createMany(req,res,next){
+    try {
+        const response =await userServices.createMany()
+        return res.json(response)
+    } catch (error) {
+        next(error)
+    }
+
+}
+
+
 }
 module.exports = new userControllers()

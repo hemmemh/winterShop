@@ -2,6 +2,7 @@ const Type  = require("../models/Type")
 const uuid = require('uuid')
 const path = require('path')
 const fs = require('fs')
+const { typesData } = require("../data/exapleData")
 class typeServices{
 
  
@@ -37,6 +38,28 @@ class typeServices{
             console.log(error);
         }
         
+     }
+
+     async getOneByName(name){
+        try {
+        const response =await Type.findOne({name})
+        return response
+        } catch (error) {
+            throw ApiError.internal('')
+        }
+        
     }
+    
+     async createMany(){
+        try {
+            const types = typesData
+            for (const type of types){
+                const response = new Type({name:type.name,image:type.image})
+                await response.save()
+            }
+        } catch (error) {
+            console.log(error);
+        }
+     }
 }
 module.exports =new typeServices()

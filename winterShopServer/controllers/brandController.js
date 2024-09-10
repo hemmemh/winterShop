@@ -21,5 +21,10 @@ async getOne(req,res){
     const response =await brandServices.getOne(id)
     return res.json(response)
 }
+
+async createMany(req,res){
+    const response =await brandServices.createMany()
+    return res.json(response)
+}
 }
 module.exports = new brandControllers()

@@ -3,6 +3,7 @@ const uuid = require('uuid')
 const path = require('path')
 const fs = require('fs')
 const ApiError = require("../Errors/ApiError")
+const { brandsData } = require("../data/exapleData")
 
 class brandServices{
     async createBrand(name,image){
@@ -43,6 +44,17 @@ class brandServices{
             console.log(e);
         }
       }
+
+      async getAllWithoutType(){
+      
+        try {
+            const brands = await Brand.find({})
+         
+            return brands
+        } catch (e) {
+            console.log(e);
+        }
+      }
       async getOne(idType){
         try {
         const response =await Brand.findById(idType)
@@ -52,5 +64,17 @@ class brandServices{
         }
         
     }
+
+    async createMany(){
+        try {
+            const brands = brandsData
+            for (const brand of brands){
+                const response = new Brand({name:brand.name,image:brand.image})
+                await response.save()
+            }
+        } catch (error) {
+            console.log(error);
+        }
+     }
 }
 module.exports =new brandServices()

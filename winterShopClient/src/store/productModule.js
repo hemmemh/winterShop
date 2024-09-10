@@ -18,7 +18,7 @@ export const productModule = {
        colors:[],
        colorsActive:[],
        page:1,
-       limit:2,
+       limit:6,
        brands:[],
        brand:false,
        sizes:[],

@@ -30,6 +30,15 @@ async change(req,res){
     return res.json(response)
 }
 
+async createMany(req,res,next){
+    try {
+        const response =await productServices.createMany()
+        return res.json(response)
+    } catch (error) {
+        next(error)
+    }
+}
+
 
 }
 module.exports = new productControllers()
