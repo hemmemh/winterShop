@@ -92,55 +92,72 @@ export default {
 
 
     mounted(){
-        this.setPage(1)
-        this.getProducts(this.$route.query.type)
-     
-        this.$route.query.type && 
-         this.getTypeAndBrands(this.$route.query.type)
+
+
+
+          const newType = this.$route.query.type || ""
+            const newBrand = this.$route.query.brand || ""
+            const newSizesActive = this.$route.query.sizesActive || []
+            const newMinPriceEnd = this.$route.query.minPriceEnd || 0
+            const newMaxPriceEnd = this.$route.query.maxPriceEnd || 100000
+            const newColorsActive = this.$route.query.colorsActive || []
+            const newPage = this.$route.query.page || 1
+            const newSort = this.$route.query.sort || JSON.stringify("date")
+            const newSearch = this.$route.query.search || ""
+            this.getProducts([newType,newPage,this.limit,newSearch,newBrand,newSizesActive,null,newMinPriceEnd,newMaxPriceEnd,newColorsActive,newSort])
     },
 
     
     watch:{
         $route (){
-            this.setPage(1)
-            this.$route.query.type && 
-            this.getProductsByType(this.$route.query.type)
-            this.getBrands(this.$route.query.type)
+            //this.setPage(1)
+            const newType = this.$route.query.type || ""
+            const newBrand = this.$route.query.brand || ""
+            const newSizesActive = this.$route.query.sizesActive || []
+            const newMinPriceEnd = this.$route.query.minPriceEnd || 0
+            const newMaxPriceEnd = this.$route.query.maxPriceEnd || 100000
+            const newColorsActive = this.$route.query.colorsActive || []
+            const newPage = this.$route.query.page || 1
+            const newSort = this.$route.query.sort || JSON.stringify("date")
+            const newSearch = this.$route.query.search || ""
+            console.log('ser', newSearch);
+            
+           this.getProductsByParams([newType,newPage,this.limit,newSearch,newBrand,newSizesActive,null,newMinPriceEnd,newMaxPriceEnd,newColorsActive,newSort])
             
         },
 
         brand(){
-          this.getProductsByParams([this.$route.query.type,this.page,this.limit,'',this.brand,this.sizesActive,null,this.minPriceEnd,this.maxPriceEnd,this.colorsActive,this.sort])
+          //this.getProductsByParams([this.$route.query.type,this.page,this.limit,'',this.brand,this.sizesActive,null,this.minPriceEnd,this.maxPriceEnd,this.colorsActive,this.sort])
         },
 
         sizesActive:{
             handler(){
-                this.getProductsByParams([this.$route.query.type,this.page,this.limit,'',this.brand,this.sizesActive,null,this.minPriceEnd,this.maxPriceEnd,this.colorsActive,this.sort])
+                //this.getProductsByParams([this.$route.query.type,this.page,this.limit,'',this.brand,this.sizesActive,null,this.minPriceEnd,this.maxPriceEnd,this.colorsActive,this.sort])
             },
             deep:true
         },
         minPriceEnd(){
-            this.getProductsByParams([this.$route.query.type,this.page,this.limit,'',this.brand,this.sizesActive,null,this.minPriceEnd,this.maxPriceEnd,this.colorsActive,this.sort])
+            //this.getProductsByParams([this.$route.query.type,this.page,this.limit,'',this.brand,this.sizesActive,null,this.minPriceEnd,this.maxPriceEnd,this.colorsActive,this.sort])
         },
         maxPriceEnd(){
-            this.getProductsByParams([this.$route.query.type,this.page,this.limit,'',this.brand,this.sizesActive,null,this.minPriceEnd,this.maxPriceEnd,this.colorsActive,this.sort])
+            //this.getProductsByParams([this.$route.query.type,this.page,this.limit,'',this.brand,this.sizesActive,null,this.minPriceEnd,this.maxPriceEnd,this.colorsActive,this.sort])
 
         },
         colorsActive:{
         handler(){
-            this.getProductsByParams([this.$route.query.type,this.page,this.limit,'',this.brand,this.sizesActive,null,this.minPriceEnd,this.maxPriceEnd,this.colorsActive,this.sort])
+            //this.getProductsByParams([this.$route.query.type,this.page,this.limit,'',this.brand,this.sizesActive,null,this.minPriceEnd,this.maxPriceEnd,this.colorsActive,this.sort])
         },
        
         deep:true
         },
         sort(){
-            this.getProductsByParams([this.$route.query.type,this.page,this.limit,'',this.brand,this.sizesActive,null,this.minPriceEnd,this.maxPriceEnd,this.colorsActive,this.sort])
+            //this.getProductsByParams([this.$route.query.type,this.page,this.limit,'',this.brand,this.sizesActive,null,this.minPriceEnd,this.maxPriceEnd,this.colorsActive,this.sort])
         },
         page(){
-            this.updateLoading && this.getProductsByParams([this.$route.query.type,this.page,this.limit,'',this.brand,this.sizesActive,null,this.minPriceEnd,this.maxPriceEnd,this.colorsActive,this.sort])
+            //this.updateLoading && this.getProductsByParams([this.$route.query.type,this.page,this.limit,'',this.brand,this.sizesActive,null,this.minPriceEnd,this.maxPriceEnd,this.colorsActive,this.sort])
         },
         searchEnd(e){
-            this.getProductsByParams([this.$route.query.type,this.page,this.limit,e,this.brand,this.sizesActive,null,this.minPriceEnd,this.maxPriceEnd,this.colorsActive,this.sort])
+            //this.getProductsByParams([this.$route.query.type,this.page,this.limit,e,this.brand,this.sizesActive,null,this.minPriceEnd,this.maxPriceEnd,this.colorsActive,this.sort])
         },
         search(e){
             this.updateSearch(e)

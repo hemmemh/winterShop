@@ -1,5 +1,5 @@
 <template lang="">
-    <router-link  :to="`/catalog?type=${el._id}`">
+    <router-link @click="onTypeChange(el)"   :to="`/catalog?type=${el._id}`">
         <div  class="types-catalog__slider slider-typesCatalog" :class="{active:el._id == $route.query.type}">
             <div class="slider-typesCatalog__body">
                 <div class="slider-typesCatalog__image">
@@ -11,11 +11,29 @@
     </router-link>
 </template>
 <script>
+import { mapMutations } from 'vuex';
 import { API_URL } from '../../../../utils/config'
 
 export default {
    
+   methods:{
+    ...mapMutations({
+            setPage:"product/setPage",
+        
+        }),
 
+        onTypeChange(e){
+            const searchParams = new URLSearchParams(this.$route.query);
+            searchParams.set('type', e._id);
+            searchParams.set('page', 1);
+            this.setPage(1)
+            this.$router.push({
+            path: this.$route.path,
+            query: { ...Object.fromEntries(searchParams.entries()) }
+            })
+        }
+
+   },
 
     setup(){
        return{

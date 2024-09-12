@@ -27,6 +27,12 @@ export default {
         onSearch(e){
             this.searchInput = e
             this.setSearch(e)
+            const searchParams = new URLSearchParams(this.$route.query);
+                searchParams.set('search', JSON.stringify(e));
+                this.$router.push({
+                path: this.$route.path,
+                query: { ...Object.fromEntries(searchParams.entries()) }
+                });
         },
 
         },

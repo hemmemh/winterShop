@@ -110,9 +110,12 @@ export const productModule = {
         
     },
     actions:{
-       async getProducts({commit},type){
+       async getProducts({commit},payload){
             try {
-                const data = await getAllproduct(type)
+               
+                const data = await getAllproduct(...payload)
+                const brands = await getAllBrands(data._id)
+                commit('setBrands',brands)
                 commit('setProducts',data)
 
                 let min = data.responceAll[0].price
@@ -132,6 +135,11 @@ export const productModule = {
                 const colorsSet = new Set(Object.values(colors))
 
                 commit('setSizes',Array.from(new Set(sizes)) )
+                commit('setType',payload[0])
+                commit('setSizesActive',payload[5])
+                commit('setColorsActive',payload[9])
+                commit('setBrand',payload[4])
+                commit('setSort',JSON.parse(payload[10]))
                 commit('setColors',Object.entries(colors).filter(el=> colorsSet.has(el[1])))
                 commit('setPriceOne',min)
                 commit('setPriceTwo',max)
@@ -150,17 +158,6 @@ export const productModule = {
      
        },
 
-       async getTypeAndBrands({commit},type){
-            try {
-                    const data = await getOneType({id:type})
-                    commit('setType',data)
-                    const brands = await getAllBrands(data._id)
-                    commit('setBrands',brands)
-            } catch (error) {
-                console.log(error);
-            }
-     
-       },
 
        async getProductsByType({state,commit},typeId){
         try { 

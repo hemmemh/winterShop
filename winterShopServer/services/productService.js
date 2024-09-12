@@ -71,20 +71,27 @@ class productServices{
             limit = limit || 6
             search = search || ''
             checkedBrands = checkedBrands || 'false'
-            const searchReg = new RegExp('.*' +search+ '.*')
-            sort = sort || 'date'
+            console.log('serr', search);
+            search = search.length !== 0 ? JSON.parse(search) : search
+            const searchReg = new RegExp('.*' +search+ '.*') 
+            console.log('sort', sort);
+            
+            sort = JSON.parse(sort)
             sortNumber = sortNumber || 1 
             minPrice =Number(minPrice)  || 0 
             maxPrice =Number(maxPrice)  || 1000000000
             console.log(minPrice,maxPrice);
             typeId = typeId || ''
             brandId = brandId || ''
-            sizes = sizes || []
-            colors = colors || []
+            sizes = sizes || '[]'
+            sizes =JSON.parse(sizes)
+            colors = colors || '[]'
+            colors = JSON.parse(colors)
             const skip = limit * page - limit 
             let responce
             let count
-            console.log(colors,'gggy');
+            console.log(sort,'gggy');
+
             if (!typeId && !brandId) {
              
                 responce =await Product.find({name: { $regex: searchReg, $options: "i" }, price:{$gt: minPrice-1, $lt: maxPrice+1}}).sort({[sort]:sortNumber}).populate(['type','brand','ratings']);
@@ -103,14 +110,15 @@ class productServices{
             }
            
            
-            console.log(responce);
+
             if (sort =='rating') {
-                sortNumber == -1 ?
+                console.log('^^^^^^');
+                
                 responce.sort((a,b)=>b.ratings.reduce((sum,val)=>val.rate+sum,0) - a.ratings.reduce((sum,val)=>val.rate+sum,0))
-                :
-                responce.sort((a,b)=>a.ratings.reduce((sum,val)=>val.rate+sum,0) - b.ratings.reduce((sum,val)=>val.rate+sum,0))
             }
-              console.log(typeof checkedBrands,'---');
+
+          
+      
              if (checkedBrands !== 'false') {
                 console.log('++++');
                 responce = [...responce.filter(e=>e.brand._id.toString() == checkedBrands)]
@@ -131,7 +139,6 @@ class productServices{
             count = responce.length
             const responceAll = responce
             responce = responceAll.slice(skip,limit * page)
-         
             return ({
                 responce,
                 responceAll,

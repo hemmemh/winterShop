@@ -1,6 +1,6 @@
 import { $host } from "."
 
-export const getAllproduct = async(typeId=null,page=null,limit=null,search=null,checkedBrands=null,sizes=null,sortNumber=null,minPrice=null,maxPrice=null,colors=null,sort=null,informations=null,typeInformation=null)=>{
+export const getAllproduct = async(typeId=null,page=null,limit=null,search=null,checkedBrands=null,sizes=null,sortNumber=null,minPrice=null,maxPrice=null,colors=null,sort=JSON.stringify("date"),informations=null,typeInformation=null)=>{
    console.log(typeId,'qqqqqqqq');
     const {data} = await $host.get('product/getAll',{params:{
         typeId,page,limit,search,checkedBrands,sortNumber,minPrice,maxPrice,sort,informations,typeInformation,sizes,colors

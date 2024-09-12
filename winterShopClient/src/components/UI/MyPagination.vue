@@ -56,7 +56,15 @@ export default {
     methods:{
         setPage(e){
             if (e >= 1 && e<= this.length) {
+                const searchParams = new URLSearchParams(this.$route.query);
+                searchParams.set('page', JSON.stringify(e));
+                this.$router.push({
+                path: this.$route.path,
+                query: { ...Object.fromEntries(searchParams.entries()) }
+                });
+                
                 this.$emit("update:modelValue",e)
+          
             }
          
         }
