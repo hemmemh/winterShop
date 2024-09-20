@@ -1,44 +1,49 @@
-const productServices = require("../services/productService")
+const productServices = require('../services/productService');
 
+class productControllers {
+  async create(req, res) {
+    const { name, description, price, colors, sizes, typeId, brandId } =
+      req.body;
+    const { image } = req.files;
+    const response = await productServices.createProduct(
+      name,
+      description,
+      price,
+      colors,
+      sizes,
+      typeId,
+      brandId,
+      image
+    );
+    return res.json(response);
+  }
+  async getAll(req, res) {
+    const response = await productServices.getAll(req.query);
+    return res.json(response);
+  }
+  async getOne(req, res) {
+    const { id } = req.body;
+    const response = await productServices.getOne(id);
+    return res.json(response);
+  }
+  async getByPurchase(req, res) {
+    const response = await productServices.getByPurchase();
+    return res.json(response);
+  }
 
-class productControllers{
-    async create(req,res){
-        const {name,description,price,colors,sizes,typeId,brandId} = req.body
-        const {image} = req.files
-        const response =await productServices.createProduct(name,description,price,colors,sizes,typeId,brandId,image)
-        return res.json(response)
-}
-async getAll(req,res){
+  async change(req, res) {
+    const { id, purchase } = req.body;
+    const response = await productServices.change(id, purchase);
+    return res.json(response);
+  }
 
-    const response =await productServices.getAll(req.query)
-    return res.json(response)
-}
-async getOne(req,res){
-    const {id} = req.body
-    const response =await productServices.getOne(id)
-    return res.json(response)
-}
-async getByPurchase(req,res){
-    const response =await productServices.getByPurchase()
-    return res.json(response)
-}
-
-
-async change(req,res){
-    const {id,purchase} = req.body
-    const response =await productServices.change(id,purchase)
-    return res.json(response)
-}
-
-async createMany(req,res,next){
+  async createMany(req, res, next) {
     try {
-        const response =await productServices.createMany()
-        return res.json(response)
+      const response = await productServices.createMany();
+      return res.json(response);
     } catch (error) {
-        next(error)
+      next(error);
     }
+  }
 }
-
-
-}
-module.exports = new productControllers()
+module.exports = new productControllers();

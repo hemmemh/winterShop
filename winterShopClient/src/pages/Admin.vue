@@ -1,18 +1,12 @@
 <template>
-<div class="Admin _app">
+  <div class="Admin _app">
     <LayoutVue>
-        <MainAdminVue/>
+      <MainAdminVue />
     </LayoutVue>
-</div>
-
+  </div>
 </template>
 <script setup>
-
-import LayoutVue from '../router/Layout.vue'
-import MainAdminVue from '../components/adminComponents/MainAdmin.vue'
+import LayoutVue from '../router/Layout.vue';
+import MainAdminVue from '../components/adminComponents/MainAdmin.vue';
 </script>
-<style lang="scss">
-
-
-
-</style>
+<style lang="scss"></style>

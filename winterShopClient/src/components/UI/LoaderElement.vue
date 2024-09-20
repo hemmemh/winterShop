@@ -1,33 +1,29 @@
 <template lang="">
-<div class="LoaderElement">
-<LoaderVue/>
-</div>
-
+  <div class="LoaderElement">
+    <LoaderVue />
+  </div>
 </template>
 <script>
 import Loader from './Loader.vue';
 
-Loader
+Loader;
 export default {
-  
-    
-    props:{
-        className:{
-            type:String,
-            default:'origin'
-        }
-    }
-}
+  props: {
+    className: {
+      type: String,
+      default: 'origin',
+    },
+  },
+};
 </script>
 <style lang="scss">
-    .Loader {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+.Loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-        &.basket{
-            flex: 1 1 auto;
-        }
+  &.basket {
+    flex: 1 1 auto;
+  }
 }
-
 </style>

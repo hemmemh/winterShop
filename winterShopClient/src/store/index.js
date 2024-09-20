@@ -1,19 +1,18 @@
-import { createStore } from "vuex";
-import { userModule } from "./userModule";
-import { basketModule } from "./basketModule";
-import { productModule } from "./productModule";
-import { productItemModule } from "./productItemModule";
-import { navBarModule } from "./navBarModule";
-import { adminModule } from "./adminModule";
-
+import { createStore } from 'vuex';
+import { userModule } from './user/userModule';
+import { basketModule } from './basket/basketModule';
+import { productModule } from './product/productModule';
+import { productItemModule } from './productItem/productItemModule';
+import { navBarModule } from './navBar/navBarModule';
+import { adminModule } from './admin/adminModule';
 
 export default createStore({
-   modules:{
-    user:userModule,
-    basket:basketModule,
-    product:productModule,
-    productItem:productItemModule,
-    navbar:navBarModule,
-    admin:adminModule,
-   }
-})
+  modules: {
+    user: userModule,
+    basket: basketModule,
+    product: productModule,
+    productItem: productItemModule,
+    navbar: navBarModule,
+    admin: adminModule,
+  },
+});

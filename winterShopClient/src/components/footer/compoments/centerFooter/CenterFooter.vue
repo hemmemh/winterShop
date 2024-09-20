@@ -1,23 +1,18 @@
 <template lang="">
-                    <div class="Footer__center">
-                        <AppsFooterVue/>
-                        <AccordionFooterVue/>
-                    </div>
+  <div class="Footer__center">
+    <AppsFooterVue />
+    <AccordionFooterVue />
+  </div>
 </template>
 <script>
-import AccordionFooterVue from './components/accordionFooter/AccordionFooter.vue'
-
-import AppsFooterVue from './components/appsFooter/AppsFooter.vue'
-
+import AccordionFooterVue from './components/accordionFooter/AccordionFooter.vue';
+import AppsFooterVue from './components/appsFooter/AppsFooter.vue';
 
 export default {
-   components:{
+  components: {
     AppsFooterVue,
     AccordionFooterVue,
-
-   } 
-}
+  },
+};
 </script>
-<style lang="">
-    
-</style>
+<style lang=""></style>
