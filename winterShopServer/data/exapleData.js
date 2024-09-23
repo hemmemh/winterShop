@@ -1,4 +1,4 @@
-export const typesData = [
+const typesData = [
   {
     name: 'Коньки',
     image: '1.png',
@@ -13,7 +13,7 @@ export const typesData = [
   },
 ];
 
-export const brandsData = [
+const brandsData = [
   {
     name: 'Bauer',
     image: '4.png',
@@ -58,7 +58,7 @@ const colors = [
   { 'Soft Pink': '#FFC0CB' },
   { 'Charcoal Gray': '#333333' },
 ];
-export const productsData = [
+const productsData = [
   {
     name: 'Bauer Vapor 2X Pro',
     images: ['1.jpg', '2.jpg', '3.jpg', '4.jpg'],
@@ -303,7 +303,7 @@ export const productsData = [
   },
 ];
 
-export const usersData = [
+const usersData = [
   {
     mail: 'alice.smith@example.com',
     password: 'password123',
@@ -366,7 +366,7 @@ export const usersData = [
   },
 ];
 
-export const ratingData = [
+const ratingData = [
   {
     name: 'Иван',
     sername: 'Иванов',
@@ -698,3 +698,13 @@ export const ratingData = [
     rate: 5,
   },
 ];
+
+module.exports = {
+  typesData,
+  brandsData,
+  colors,
+  productsData,
+  usersData,
+  ratingData
+
+}
