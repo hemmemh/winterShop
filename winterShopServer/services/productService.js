@@ -11,6 +11,13 @@ const typeService = require('./typeService');
 const ratingService = require('./ratingService');
 const userService = require('./userService');
 class productServices {
+
+  async isEmpty(){
+    const count =  await Product.count()
+    return count === 0
+  }
+
+
   async createProduct(
     name,
     description,
@@ -228,6 +235,8 @@ class productServices {
 
   async createMany() {
     try {
+      const isEmpty = await this.isEmpty()
+      if(!isEmpty) return
       const products = productsData;
       const brands = await brandService.getAllWithoutType();
       const users = await userService.getAll();

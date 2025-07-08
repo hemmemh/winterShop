@@ -6,6 +6,12 @@ const ApiError = require('../Errors/ApiError');
 const { brandsData } = require('../data/exapleData');
 
 class brandServices {
+
+  async isEmpty(){
+    const count =  await Brand.count()
+    return count === 0
+  }
+
   async createBrand(name, image) {
     const imagePath = uuid.v4() + '.jpg';
     const filePath = path.resolve(__dirname, '..', 'static', `brands`);
@@ -63,6 +69,8 @@ class brandServices {
 
   async createMany() {
     try {
+      const isEmpty = await this.isEmpty()
+      if(!isEmpty) return
       const brands = brandsData;
       for (const brand of brands) {
         const response = new Brand({ name: brand.name, image: brand.image });

@@ -4,6 +4,12 @@ const path = require('path');
 const fs = require('fs');
 const { typesData } = require('../data/exapleData');
 class typeServices {
+
+  async isEmpty(){
+    const count =  await Type.count()
+    return count === 0
+  }
+
   async createType(name, image) {
     try {
       const imagePath = uuid.v4() + '.jpg';
@@ -48,6 +54,8 @@ class typeServices {
 
   async createMany() {
     try {
+      const isEmpty = await this.isEmpty()
+      if(!isEmpty) return
       const types = typesData;
       for (const type of types) {
         const response = new Type({ name: type.name, image: type.image });

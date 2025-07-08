@@ -8,6 +8,12 @@ const bccrypt = require('bcrypt');
 const tokenServices = require('../services/tokenService');
 const { usersData } = require('../data/exapleData');
 class userServices {
+
+  async isEmpty(){
+    const count =  await User.count()
+    return count === 0
+  }
+
   async registration(mail, password, name, sername) {
     console.log(mail, password);
     const candidate = await User.findOne({ email: mail });
@@ -95,6 +101,8 @@ class userServices {
   }
 
   async createMany() {
+    const isEmpty = await this.isEmpty()
+    if(!isEmpty) return
     const users = usersData;
     for (const user of users) {
       await this.registration(
